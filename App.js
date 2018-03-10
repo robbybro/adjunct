@@ -1,35 +1,42 @@
 import React from 'react';
-import { StyleSheet, Button, TextInput, View, Alert } from 'react-native';
+import { StyleSheet, Button, TextInput, View, Text } from 'react-native';
 import Timer from './components/Timer/Timer';
+import { StackNavigator } from 'react-navigation';
+import { Provider, connect } from 'react-redux';
 
-export default class HelloWorldApp extends React.Component {
-    constructor() {
-        super();
-        this.state = { text: '' };
-    }
-    btnClick(e) {
-        Alert.alert('Alert title', this.state.text);
-    }
+import { ROUTES } from './Const';
+import store from './store';
 
+import SetDefaults from './views/SetDefaults/SetDefaults';
+import Title from './views/Title/Title';
+
+const AppNavigator = StackNavigator(
+    {
+        [ROUTES.TITLE]: {
+            screen: Title,
+        },
+        [ROUTES.SET_DEFAULTS]: {
+            screen: SetDefaults,
+        },
+        // [ROUTES.ADD_EVENTS]: {
+        //     screen: AddEvents,
+        // },
+        // [ROUTES.TIMER]: {
+        //     screen: Timer,
+        // },
+
+    },
+    {
+        initialRouteName: ROUTES.TITLE,
+    },
+);
+
+export default class App extends React.Component {
     render() {
         return (
-            <View style={styles.container}>
-                <TextInput
-                    style={{ width: 100 }}
-                    val={this.state.text}
-                    onChangeText={text => this.setState({ text })}
-                />
-                <Button title="Click" onPress={e => this.btnClick(e)} />
-                <Timer />
-            </View>
+            <Provider store={store}>
+                <AppNavigator />
+            </Provider>
         );
     }
 }
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        alignItems: 'center',
-        justifyContent: 'center',
-    },
-});
