@@ -3,7 +3,6 @@ import { ACTIONS } from '../Const';
 const initialState = { timerType: '', timerLength: 60 };
 
 export default function timer(state = initialState, action) {
-    console.log(action);
     switch (action.type) {
         case ACTIONS.TIMER.SET_TIMER_TYPE:
             return {

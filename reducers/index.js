@@ -1,10 +1,12 @@
 import { combineReducers } from 'redux';
-import timer from './timer';
 import events from './events';
+import nav from './nav';
+import timer from './timer';
 
 const rootReducer = combineReducers({
-    timer,
     events,
+    nav,
+    timer,
 });
 
 export default rootReducer;

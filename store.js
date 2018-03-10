@@ -1,6 +1,15 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import rootReducer from './reducers/index';
 
-const store = createStore(rootReducer, {});
+export default function configureStore() {
+    const store = createStore(rootReducer);
 
-export default store;
+    if (module.hot) {
+        module.hot.accept(() => {
+            const nextRootReducer = require('./reducers/index').default;
+            store.replaceReducer(nextRootReducer);
+        });
+    }
+
+    return store;
+}

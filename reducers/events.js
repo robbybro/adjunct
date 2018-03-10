@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-import { ACTIONS } from '../Const';
+import { ACTIONS, INITIAL_SUGGESTED_EVENTS } from '../Const';
 
 const initialState = { current: {}, suggested: [], added: [] };
 
@@ -26,10 +26,19 @@ export default function events(state = initialState, action) {
                 suggested: _.without(state.suggested, action.value),
                 added: [...state.added, action.value],
             };
-        case ACTIONS.EVENTS.REMOVE_EVENT:
+        case ACTIONS.EVENTS.SET_SUGGESTED_EVENTS:
             return {
                 ...state,
-                added: _.without(state.added, action.value),
+                suggested: _.without(action.value, ...state.added),
+            };
+
+        case ACTIONS.EVENTS.REMOVE_EVENT:
+            const added = _.without(state.added, action.value);
+            return {
+                ...state,
+                added,
+                // add events back to suggested as they're removed from added
+                suggested: [...state.suggested, action.value],
             };
         // TODO:
         case ACTIONS.EVENTS.FIRE_EVENT:

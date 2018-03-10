@@ -4,6 +4,7 @@ import { Button, Text, View } from 'react-native';
 import { ROUTES, ACTIVITIES } from '../../Const';
 import { connect } from 'react-redux';
 import { setTimerType } from '../../actions/timer';
+import { setSuggestedEvents } from '../../actions/events';
 
 const Buttons = ({ navigation, onTimerTypeClick }) =>
     Object.keys(ACTIVITIES).map(activity => (
@@ -32,7 +33,10 @@ const Title = ({ navigation, onTimerTypeClick, ...otherProps }) => {
 const mapStateToProps = (state, props) => ({ ...state, ...props });
 const mapDispatchToProps = dispatch => {
     return {
-        onTimerTypeClick: timerType => dispatch(setTimerType(timerType)),
+        onTimerTypeClick: timerType => {
+            dispatch(setTimerType(timerType));
+            dispatch(setSuggestedEvents(timerType));
+        },
     };
 };
 
