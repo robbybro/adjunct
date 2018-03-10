@@ -21,13 +21,16 @@ const Title = ({ navigation, onTimerTypeClick, ...otherProps }) => {
     return (
         <View>
             <Text>Adjunct</Text>
-            <Buttons navigation={navigation} onTimerTypeClick={onTimerTypeClick} />
+            <Buttons
+                navigation={navigation}
+                onTimerTypeClick={onTimerTypeClick}
+            />
         </View>
     );
 };
 
 const mapStateToProps = (state, props) => ({ ...state, ...props });
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = dispatch => {
     return {
         onTimerTypeClick: timerType => dispatch(setTimerType(timerType)),
     };

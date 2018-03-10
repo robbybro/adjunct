@@ -1,16 +1,16 @@
 import { ACTIONS } from '../Const';
 
-export default function timer(
-    state = { timerType: '', timerLength: 60 },
-    action,
-) {
+const initialState = { timerType: '', timerLength: 60 };
+
+export default function timer(state = initialState, action) {
+    console.log(action);
     switch (action.type) {
-        case ACTIONS.SET_TIMER_TYPE:
+        case ACTIONS.TIMER.SET_TIMER_TYPE:
             return {
                 ...state,
                 timerType: action.value,
             };
-        case ACTIONS.SET_TIMER_LENGTH:
+        case ACTIONS.TIMER.SET_TIMER_LENGTH:
             return {
                 ...state,
                 timerLength: action.value,
