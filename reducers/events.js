@@ -2,6 +2,15 @@ import _ from 'lodash';
 
 import { ACTIONS, INITIAL_SUGGESTED_EVENTS } from '../Const';
 
+/*
+Event: {
+    ingredient: string;
+    qty: string;
+    time: number;
+    fired: false;
+}
+ */
+
 const initialState = { current: {}, suggested: [], added: [] };
 
 export default function events(state = initialState, action) {
@@ -17,7 +26,7 @@ export default function events(state = initialState, action) {
         case ACTIONS.EVENTS.ADD_EVENT:
             return {
                 ...state,
-                added: [...state.added, action.value],
+                added: [...state.added, { ...action.value, fired: false }],
                 current: {},
             };
         case ACTIONS.EVENTS.ADD_SUGGESTED_EVENT:
@@ -44,6 +53,10 @@ export default function events(state = initialState, action) {
         case ACTIONS.EVENTS.FIRE_EVENT:
             return {
                 ...state,
+                added: [
+                    ..._.without(state.added, action.value),
+                    { ...action.value, fired: true },
+                ],
             };
         default:
             return state;

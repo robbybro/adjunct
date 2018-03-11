@@ -34,6 +34,11 @@ export default function timer(state = initialState, action) {
                 ...state,
                 isTicking: false,
             };
+        case ACTIONS.RESET_TIMER:
+            return {
+                state,
+                elapsed: 0,
+            };
         default:
             return state;
     }

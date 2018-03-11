@@ -20,6 +20,10 @@ export const stopTimer = () => ({
     type: ACTIONS.TIMER.STOP_TIMER,
 });
 
+export const resetTimer = () => ({
+    type: ACTIONS.TIMER.RESET_TIMER,
+});
+
 export const tick = () => ({
     type: ACTIONS.TIMER.TICK,
 });

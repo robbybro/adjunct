@@ -47,6 +47,7 @@ class AddEvents extends React.Component {
                         numberOfMinutes={120}
                         defaultMinutes={events.current.time}
                         onValueChange={value => onMinutePick(value)}
+                        removeEvent={removeEvent}
                     />
                     <Button
                         title="Add"

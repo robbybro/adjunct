@@ -1,4 +1,5 @@
 export const ONE_SECOND = 1000;
+export const VIBRATION_PATTERN = [100, 100, 100];
 
 export const ROUTES = {
     TITLE: 'TITLE',
@@ -18,6 +19,7 @@ export const ACTIONS = {
         SET_TIMER_TYPE: 'SET_TIMER_TYPE',
         SET_TIMER_LENGTH: 'SET_TIMER_LENGTH',
         SET_ELAPSED_TIME: 'SET_ELAPSED_TIME',
+        RESET_TIMER: 'RESET_TIMER',
         START_TIMER: 'START_TIMER',
         STOP_TIMER: 'STOP_TIMER',
         TICK: 'TICK',
@@ -33,23 +35,45 @@ export const ACTIONS = {
 };
 
 export const INITIAL_SUGGESTED_EVENTS = {
-    [ACTIVITIES.MASH]: [],
     [ACTIVITIES.BOIL]: [
         {
             ingredient: 'Yeast Nutrient',
             qty: '1/2 tsp / 5gal',
             time: 10,
+            fired: false,
         },
         {
             ingredient: 'Whirlfloc',
             qty: '1/2 tablet / 5gal',
             time: 15,
+            fired: false,
         },
         {
             ingredient: 'Irish Moss',
             qty: '1 tsp / 5gal',
             time: 15,
+            fired: false,
         },
     ],
-    [ACTIVITIES.FERMENT]: [],
+    [ACTIVITIES.FERMENT]: [
+        {
+            ingredient: 'Test 1',
+            qty: '1 seconds',
+            time: 59,
+            fired: false,
+        },
+        {
+            ingredient: 'Test 2',
+            qty: '2 seconds',
+            time: 58,
+            fired: false,
+        },
+        {
+            ingredient: 'Test 3',
+            qty: '5 seconds',
+            time: 55,
+            fired: false,
+        },
+    ],
+    [ACTIVITIES.MASH]: [],
 };

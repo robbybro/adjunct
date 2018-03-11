@@ -28,7 +28,9 @@ export const removeEvent = event => {
     };
 };
 
-export const fireEvent = event => ({
-    type: ACTIONS.EVENTS.FIRE_EVENT,
-    value: event,
-});
+export const fireEvent = event => {
+    return {
+        type: ACTIONS.EVENTS.FIRE_EVENT,
+        value: event,
+    };
+};
