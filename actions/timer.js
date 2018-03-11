@@ -19,3 +19,7 @@ export const startTimer = () => ({
 export const stopTimer = () => ({
     type: ACTIONS.TIMER.STOP_TIMER,
 });
+
+export const tick = () => ({
+    type: ACTIONS.TIMER.TICK,
+});

@@ -3,6 +3,8 @@ import { Button, Text, TextInput, View } from 'react-native';
 import { connect } from 'react-redux';
 
 import MinutePicker from '../../components/MinutePicker';
+import EventList from '../../components/EventList';
+
 import {
     updateCurrentlyEditingEvent,
     addEvent,
@@ -26,21 +28,7 @@ class AddEvents extends React.Component {
         return (
             <View>
                 <Text>Add Events</Text>
-                <View>
-                    {events.added
-                        .sort((a, b) => b.time - a.time)
-                        .map((e, i) => (
-                            <View>
-                                <Text key={i}>
-                                    {e.ingredient}, {e.qty}, {e.time}
-                                </Text>
-                                <Button
-                                    onPress={() => removeEvent(e)}
-                                    title="x"
-                                />
-                            </View>
-                        ))}
-                </View>
+                <EventList events={events.added} />
                 <View>
                     <Text>Ingredient</Text>
                     <TextInput
@@ -80,7 +68,7 @@ class AddEvents extends React.Component {
                 </View>
                 <Button
                     onPress={() => navigation.navigate(ROUTES.TIMER)}
-                    title="Start Timer"
+                    title="Next"
                 />
             </View>
         );
